@@ -13,5 +13,6 @@ It is easiest to install NodeJS and MySQL through [Homebrew](http://brew.sh/). G
 * Run `npm install` to install all packages locally
 * Run `gulp start-db` to start the mysql server
 * Run `mysql -u root < setup.sql` to initialize database
+* Run `gulp serve` to run the app
 
 *Will add more later as app progresses.* - @triedal

@@ -1,0 +1,23 @@
+{
+  "name": "rentalcar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TR & UT",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^13.0.0",
+    "express": "^4.13.4",
+    "mysql": "^2.10.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-db": "0.0.1",
+    "gulp-shell": "^0.5.2",
+    "gulp-util": "^3.0.7",
+    "run-sequence": "^1.1.5"
+  }
+}

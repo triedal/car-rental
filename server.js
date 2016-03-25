@@ -74,7 +74,15 @@ router.route('/vehicles/:id')
 
   // Update vehicle by ID
   .put(function(req, res) {
-
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
+      
+      connection.query('UPDATE Vehicles SET ? WHERE ?', [req.body, req.params.id], function(err,rows) {
+        if (err) throw err;
+        connection.release();
+        if(!err) res.json(rows);      
+      });
+    });
   })
 
   .delete(function(req, res) {
@@ -131,7 +139,15 @@ router.route('/customers/:id')
 
   // Update customer by ID
   .put(function(req, res) {
-
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
+      
+      connection.query('UPDATE Customers SET ? WHERE ?', [req.body, req.params.id], function(err,rows) {
+        if (err) throw err;
+        connection.release();
+        if(!err) res.json(rows);      
+      });
+    });
   })
 
   .delete(function(req, res) {
@@ -194,7 +210,15 @@ router.route('/contracts/:id')
 
   // Update contract by ID
   .put(function(req, res) {
-
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
+      
+      connection.query('UPDATE RentalContracts SET ? WHERE ?', [req.body, req.params.id], function(err,rows) {
+        if (err) throw err;
+        connection.release();
+        if(!err) res.json(rows);      
+      });
+    });
   })
 
   .delete(function(req, res) {

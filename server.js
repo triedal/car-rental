@@ -1,6 +1,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
+var path = require('path');
 
 var app = express();
 var router = express.Router();
@@ -21,11 +22,13 @@ var pool = mysql.createPool({
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
-// API Router Stuff
+// This serves as the entry point into the app
 app.get('/', function(req, res) {
-  //res.sendFile(path.join(__dirname, '/ui/index.html'));
+  res.sendFile(path.join(__dirname, '/ui/index.html'));
 });
 
+// API Router Stuff
+//
 // Vehicles ----------------------------
 router.route('/vehicles')
   // Get all vehicles

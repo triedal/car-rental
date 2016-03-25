@@ -78,7 +78,14 @@ router.route('/vehicles/:id')
   })
 
   .delete(function(req, res) {
-
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
+      connection.query('DELETE FROM Vehicles WHERE vehicle_id = ?', [req.params.id], function(err,rows) {
+        if (err) throw err;
+        connection.release();
+        if(!err) res.json(rows);      
+      });
+    });
   });
 
 // Customers --------------------------
@@ -128,7 +135,14 @@ router.route('/customers/:id')
   })
 
   .delete(function(req, res) {
-
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
+      connection.query('DELETE FROM Customers WHERE cust_id = ?', [req.params.id], function(err,rows) {
+        if (err) throw err;
+        connection.release();
+        if(!err) res.json(rows);      
+      });
+    });
   });
 
 // Rental contracts ------------------
@@ -184,7 +198,14 @@ router.route('/contracts/:id')
   })
 
   .delete(function(req, res) {
-
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
+      connection.query('DELETE FROM RentalContracts WHERE contract_id = ?', [req.params.id], function(err,rows) {
+        if (err) throw err;
+        connection.release();
+        if(!err) res.json(rows);      
+      });
+    });
   });
 
 

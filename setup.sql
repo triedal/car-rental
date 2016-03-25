@@ -6,7 +6,7 @@ CREATE TABLE Vehicles (
 	vehicle_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   type ENUM('coupe', 'sedan', 'suv', 'truck', 'other'),
   status ENUM('available', 'unavailable') DEFAULT 'available',
-	vin_num INT(17) UNSIGNED NOT NULL,
+	vin_num VARCHAR(17) NOT NULL,
   meter_reading INT(6) UNSIGNED NOT NULL,
   cost_per_mile INT UNSIGNED NOT NULL
 );

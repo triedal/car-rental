@@ -8,7 +8,7 @@ var port = process.env.PORT || 3000;
 
 // API Router Stuff
 router.get('/', function(req, res) {
-	res.send('API index');
+  
 });
 
 // Vehicles ----------------------------

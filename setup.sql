@@ -8,6 +8,7 @@ CREATE TABLE Vehicles (
   status ENUM('available', 'unavailable') DEFAULT 'available',
 	vin_num VARCHAR(17) NOT NULL,
   meter_reading INT(6) UNSIGNED NOT NULL,
+  # TODO: change INT to DECIMAL(3,2)
   cost_per_mile INT UNSIGNED NOT NULL
 );
 
@@ -23,6 +24,7 @@ CREATE TABLE RentalContracts (
   vehicle_id INT UNSIGNED REFERENCES Vehicles(vehicle_id),
   meter_out INT(6) UNSIGNED,
   meter_in INT(6) UNSIGNED,
+  # TODO: change INT to DECIMAL(3,2)
   cost_per_mile INT,
   reg_date DATETIME NOT NULL
 );

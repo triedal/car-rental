@@ -1,5 +1,6 @@
 var express = require('express');
 var mysql = require('mysql');
+var bodyParser = require('body-parser');
 
 var app = express();
 var router = express.Router();
@@ -16,10 +17,13 @@ var pool = mysql.createPool({
   acquireTimeout: 30000 // 30s
 });
 
+// bodyParser setup
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.json());
+
 // API Router Stuff
 app.get('/', function(req, res) {
-  // will serve index.html here
-  res.send('index');
+  //res.sendFile(path.join(__dirname, '/ui/index.html'));
 });
 
 // Vehicles ----------------------------
@@ -37,7 +41,23 @@ router.route('/vehicles')
   })
 
   .post(function(req, res) {
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
 
+      var type = req.body.type;
+      var status = req.body.status;
+      var vin = req.body.vin;
+      var meterReading = req.body.meterReading;
+      var costPerMile = req.body.costPerMile;
+
+      connection.query('INSERT INTO Vehicles (type, status, vin_num, meter_reading, cost_per_mile) VALUES (?, ?, ?, ?, ?)',
+        [type, status, vin, meterReading, costPerMile],
+        function(err,rows) {
+          if (err) throw err;
+          connection.release();
+          if(!err) res.json(rows);      
+        });
+    });
   });
 
 router.route('/vehicles/:id')
@@ -76,12 +96,22 @@ router.route('/customers')
   })
 
   .post(function(req, res) {
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
 
+      var firstname = req.body.firstname;
+      var lastname = req.body.lastname;
+
+      connection.query('INSERT INTO Customers (firstname, lastname) VALUES (?, ?)', [firstname, lastname], function(err,rows) {
+        if (err) throw err;
+        connection.release();
+        if(!err) res.json(rows);      
+      });
+    });
   });
 
 router.route('/customers/:id')
   .get(function(req, res) {
-    // TODO: Add support for id
     pool.getConnection(function(err,connection){
       if (err) throw err;
       connection.query('SELECT * FROM Customers WHERE cust_id = ?', [req.params.id], function(err,rows) {
@@ -116,7 +146,24 @@ router.route('/contracts')
   })
 
   .post(function(req, res) {
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
 
+      var custId = req.body.custId;
+      var vehicleId = req.body.vehicleId;
+      var meterOut = req.body.meterOut;
+      var meterIn = null;
+      var costPerMile = req.body.costPerMile;
+      var date = req.body.date;
+
+      connection.query('INSERT INTO RentalContracts (cust_id, vehicle_id, meter_out, meter_in, cost_per_mile, reg_date) VALUES (?, ?, ?, ?, ?, NOW())',
+        [custId, vehicleId, meterOut, meterIn, costPerMile],
+        function(err,rows) {
+          if (err) throw err;
+          connection.release();
+          if(!err) res.json(rows);      
+        });
+    });
   });
 
 router.route('/contracts/:id')

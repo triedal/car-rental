@@ -28,7 +28,7 @@ router.route('/vehicles')
   .get(function(req, res) {
     pool.getConnection(function(err,connection){
       if (err) throw err;
-      connection.query("SELECT * FROM Vehicles", function(err,rows) {
+      connection.query('SELECT * FROM Vehicles', function(err,rows) {
         if (err) throw err;
         connection.release();
         if(!err) res.json(rows);      
@@ -42,7 +42,14 @@ router.route('/vehicles')
 
 router.route('/vehicles/:id')
   .get(function(req, res) {
-
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
+      connection.query('SELECT * FROM Vehicles WHERE vehicle_id = ?', [req.params.id], function(err,rows) {
+        if (err) throw err;
+        connection.release();
+        if(!err) res.json(rows);      
+      });
+    });
   })
 
   // Update vehicle by ID
@@ -60,7 +67,7 @@ router.route('/customers')
   .get(function(req, res) {
     pool.getConnection(function(err,connection){
       if (err) throw err;
-      connection.query("SELECT * FROM Customers", function(err,rows) {
+      connection.query('SELECT * FROM Customers', function(err,rows) {
         if (err) throw err;
         connection.release();
         if(!err) res.json(rows);      
@@ -74,7 +81,15 @@ router.route('/customers')
 
 router.route('/customers/:id')
   .get(function(req, res) {
-
+    // TODO: Add support for id
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
+      connection.query('SELECT * FROM Customers WHERE cust_id = ?', [req.params.id], function(err,rows) {
+        if (err) throw err;
+        connection.release();
+        if(!err) res.json(rows);      
+      });
+    });
   })
 
   // Update customer by ID
@@ -92,7 +107,7 @@ router.route('/contracts')
   .get(function(req, res) {
     pool.getConnection(function(err,connection){
       if (err) throw err;
-      connection.query("SELECT * FROM Contracts", function(err,rows) {
+      connection.query('SELECT * FROM RentalContracts', function(err,rows) {
         if (err) throw err;
         connection.release();
         if(!err) res.json(rows);      
@@ -106,7 +121,14 @@ router.route('/contracts')
 
 router.route('/contracts/:id')
   .get(function(req, res) {
-
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
+      connection.query('SELECT * FROM RentalContracts WHERE contract_id = ?', [req.params.id], function(err,rows) {
+        if (err) throw err;
+        connection.release();
+        if(!err) res.json(rows);      
+      });
+    });
   })
 
   // Update contract by ID

@@ -6,16 +6,34 @@ var router = express.Router();
 
 var port = process.env.PORT || 3000;
 
+var pool = mysql.createPool({
+  connectionLimit: 100,
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'CarRental',
+  debug: false, 
+  acquireTimeout: 30000 // 30s
+});
+
 // API Router Stuff
-router.get('/', function(req, res) {
-  
+app.get('/', function(req, res) {
+  // will serve index.html here
+  res.send('index');
 });
 
 // Vehicles ----------------------------
 router.route('/vehicles')
   // Get all vehicles
   .get(function(req, res) {
-
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
+      connection.query("SELECT * FROM Vehicles", function(err,rows) {
+        if (err) throw err;
+        connection.release();
+        if(!err) res.json(rows);      
+      });
+    });
   })
 
   .post(function(req, res) {
@@ -40,7 +58,14 @@ router.route('/vehicles/:id')
 router.route('/customers')
   // Get all customers
   .get(function(req, res) {
-
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
+      connection.query("SELECT * FROM Customers", function(err,rows) {
+        if (err) throw err;
+        connection.release();
+        if(!err) res.json(rows);      
+      });
+    });
   })
 
   .post(function(req, res) {
@@ -65,7 +90,14 @@ router.route('/customers/:id')
 router.route('/contracts')
   // Get all customers
   .get(function(req, res) {
-
+    pool.getConnection(function(err,connection){
+      if (err) throw err;
+      connection.query("SELECT * FROM Contracts", function(err,rows) {
+        if (err) throw err;
+        connection.release();
+        if(!err) res.json(rows);      
+      });
+    });
   })
 
   .post(function(req, res) {

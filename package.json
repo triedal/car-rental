@@ -19,10 +19,16 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-db": "0.0.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-html-replace": "^1.5.5",
+    "gulp-nodemon": "^2.0.6",
+    "gulp-react": "^3.1.0",
     "gulp-shell": "^0.5.2",
+    "gulp-streamify": "^1.0.2",
+    "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
-    "run-sequence": "^1.1.5",
-    "vinyl-source-stream": "^1.1.0"
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
   }
 }

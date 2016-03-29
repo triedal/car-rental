@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 // This serves as the entry point into the app
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '/ui/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 // API Router Stuff

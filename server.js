@@ -18,6 +18,9 @@ var pool = mysql.createPool({
   acquireTimeout: 30000 // 30s
 });
 
+// Serves up static files in dist (js & css files)
+app.use(express.static(path.join(__dirname, 'dist')));
+
 // bodyParser setup
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());

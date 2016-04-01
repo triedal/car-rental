@@ -50,7 +50,7 @@ gulp.task('serve', function(){
 
 // Dev
 gulp.task('watch', function() {
-  gulp.watch(path.HTML, ['copy']);
+  gulp.watch(path.HTML, ['replaceHTML-dev']);
 
   var watcher  = watchify(browserify({
     entries: [path.ENTRY_POINT],
@@ -82,13 +82,12 @@ gulp.task('build', function(){
     .pipe(gulp.dest(path.DEST_BUILD));
 });
 
-gulp.task('browserify', function() {
-	return browserify('./ui/js/app.js')
-		.bundle()
-		// Pass desired output file to vinyl-source-stream
-		.pipe(source('bundle.js'))
-		// Start piping stream to tasks
-		.pipe(gulp.dest('./build/'));
+gulp.task('replaceHTML-dev', function(){
+  gulp.src(path.HTML)
+    .pipe(htmlreplace({
+      'js': 'ui/' + path.OUT
+    }))
+    .pipe(gulp.dest(path.DEST));
 });
 
 gulp.task('replaceHTML', function(){
@@ -99,6 +98,6 @@ gulp.task('replaceHTML', function(){
     .pipe(gulp.dest(path.DEST));
 });
 
-gulp.task('production', ['replaceHTML', 'build']);
+gulp.task('production', ['replaceHTML-dev', 'build']);
 
 gulp.task('default', ['serve', 'watch']);

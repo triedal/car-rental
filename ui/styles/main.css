@@ -1,3 +1,7 @@
+/*
+------------ NAVBAR -----------------
+*/
+
 .navbar {
     border-radius: 0;
 }
@@ -44,4 +48,15 @@
 
 .navbar-new .navbar-toggle .icon-bar {
     background-color: #777;
+}
+
+/*
+---------- RESERVE PAGE -----------
+*/
+
+#teaser {
+  width: 100%;
+  height: 600px;
+  background-color: #FFBF00;
+  background: linear-gradient(to bottom, #ffbf00 0%, #fcd45f 50%, #ffbf00 100%);
 }

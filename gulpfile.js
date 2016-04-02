@@ -17,6 +17,7 @@ var nodemon = require('gulp-nodemon');
 
 var path = {
   HTML: 'ui/index.html',
+  CSS: 'ui/styles/main.css',
   MINIFIED_OUT: 'build.min.js',
   OUT: 'build.js',
   DEST_SRC: 'dist/ui',
@@ -40,6 +41,11 @@ gulp.task('copy', function(){
     .pipe(gulp.dest(path.DEST));
 });
 
+gulp.task('copy-css', function() {
+  gulp.src(path.CSS)
+    .pipe(gulp.dest(path.DEST_SRC));
+});
+
 gulp.task('serve', function(){
   nodemon({
   	script: 'server.js'
@@ -51,6 +57,7 @@ gulp.task('serve', function(){
 // Dev
 gulp.task('watch', function() {
   gulp.watch(path.HTML, ['replaceHTML-dev']);
+  gulp.watch(path.CSS, ['copy-css']);
 
   var watcher  = watchify(browserify({
     entries: [path.ENTRY_POINT],
@@ -65,7 +72,11 @@ gulp.task('watch', function() {
       .pipe(gulp.dest(path.DEST_SRC))
       console.log('Updated');
   })
-    .bundle()
+    .bundle().on('error', function(e) {
+      console.log(e);
+      this.emit('end');
+    })
+    
     .pipe(source(path.OUT))
     .pipe(gulp.dest(path.DEST_SRC));
 });
@@ -85,6 +96,7 @@ gulp.task('build', function(){
 gulp.task('replaceHTML-dev', function(){
   gulp.src(path.HTML)
     .pipe(htmlreplace({
+      'css': 'ui/main.css',
       'js': 'ui/' + path.OUT
     }))
     .pipe(gulp.dest(path.DEST));
@@ -98,6 +110,6 @@ gulp.task('replaceHTML', function(){
     .pipe(gulp.dest(path.DEST));
 });
 
-gulp.task('production', ['replaceHTML-dev', 'build']);
+gulp.task('production', ['replaceHTML', 'build']);
 
 gulp.task('default', ['serve', 'watch']);

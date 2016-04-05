@@ -1,4 +1,12 @@
 /*
+------------ GLOBAL -----------------
+*/
+
+.max-width {
+    max-width: 1170px;
+}
+
+/*
 ------------ NAVBAR -----------------
 */
 
@@ -9,6 +17,13 @@
 .navbar-new {
     background-color: #FFF;
     border-color: #FFF;
+    margin: 0;
+    height: 96px;
+    padding-top: 21px;
+}
+
+.navbar-new .container-fluid {
+    vertical-align: middle;
 }
 
 .navbar-new .navbar-brand,
@@ -19,11 +34,12 @@
 
 .navbar-new .navbar-nav > li > a {
     color: #777;
+    margin-left: 5px;
 }
 
 .navbar-new .navbar-nav > li > a:hover,
 .navbar-new .navbar-nav > li > a:focus {
-    background-color: #D7d3D4;
+    background-color: #D7D3D4;
 }
 
 .navbar-new .navbar-nav > .active > a,

@@ -4,7 +4,7 @@ var Navbar = React.createClass({
   render: function() {
     return (
       <nav className="navbar navbar-new" role="navigation">
-          <div className="container-fluid">
+          <div className="container-fluid max-width">
               <div className="navbar-header">
                   <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
                       <span className="sr-only">Toggle navigation</span>
@@ -17,9 +17,7 @@ var Navbar = React.createClass({
               <div className="collapse navbar-collapse navbar-right" id="navbar1">
                   <ul className="nav navbar-nav">
                       <li className="active"><a href="#">Home</a></li>
-                      <li><a href="#">About</a></li>
-                      <li><a href="#">Services</a></li>
-                      <li><a href="#">Blog</a></li>
+                      <li><a href="#">Vehicles</a></li>
                       <li><a href="#">Contact</a></li>
                   </ul>
               </div>

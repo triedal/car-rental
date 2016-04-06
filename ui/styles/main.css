@@ -101,6 +101,11 @@ body {
   padding: 34px;
 }
 
+#teaser form h1 {
+  text-align: center;
+  text-transform: uppercase;
+}
+
 #teaser form .alert {
   margin-top: -20px;
   padding: 10px 15px;
@@ -121,7 +126,8 @@ body {
   border: 2px solid #efe9e9;
   height: 55px;
   position: relative;
-  margin-bottom: 23px;
+  margin-top: 25px;
+  margin-bottom: 30px;
 }
 #teaser form .styled-select-car:after {
   content: '';
@@ -144,6 +150,82 @@ body {
   padding: 9px 10px;
   height: 51px;
   outline: none;
+}
+
+#teaser form .datetime {
+  margin-bottom: 11px;
+}
+#teaser form .form-control {
+  height: 43px;
+  border: 2px solid #efe9e9;
+  box-shadow: none;
+}
+#teaser form .input-group {
+  width: 100%;
+}
+#teaser form .input-group input {
+  border-radius: 0;
+  color: #ffbf00;
+  font-size: 16px;
+  padding-left: 15px;
+  box-shadow: none;
+  background: none;
+  -webkit-appearance: none;
+}
+#teaser form .input-group-addon {
+  border-radius: 0;
+  border: none;
+  background-color: #efe9e9;
+  font-weight: bold;
+  font-size: 16px;
+  color: #716d6e;
+  width: 110px;
+  text-align: left;
+}
+#teaser form .input-group-addon .glyphicon {
+  font-size: 17px;
+  margin: 0 2px 0 -2px;
+}
+#teaser form .different-drop-off {
+  color: #716d6e;
+  font-weight: bold;
+  margin: 10px 0;
+  display: block;
+}
+#teaser form .date {
+  width: 230px;
+}
+#teaser form .time {
+  width: 140px;
+}
+#teaser form .pixelfix {
+  border-top: 1px solid #fff;
+}
+#teaser form .styled-select-time {
+  border: 2px solid #efe9e9;
+  height: 43px;
+  position: relative;
+}
+#teaser form .styled-select-time:after {
+  content: '';
+  background: #ffffff url('imgs/dropdown-icon.png') no-repeat 5px 18px;
+  right: 0px;
+  top: 0px;
+  width: 30px;
+  height: 39px;
+  position: absolute;
+  pointer-events: none;
+}
+#teaser form .styled-select-time select {
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  background-image: none;
+  background: #fff;
+  -webkit-appearance: none;
+  padding: 10px 10px;
+  height: 39px;
+  color: #ffbf00;
 }
 
 #teaser form .submit {

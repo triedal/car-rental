@@ -2,9 +2,13 @@
   "name": "rentalcar",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/COP4710-001S16/car-rental"
   },
   "author": "TR & UT",
   "license": "ISC",

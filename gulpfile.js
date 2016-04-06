@@ -18,6 +18,7 @@ var nodemon = require('gulp-nodemon');
 var path = {
   HTML: 'ui/index.html',
   CSS: 'ui/styles/main.css',
+  IMAGES: '/ui/imgs/**/*.{png,gif}',
   MINIFIED_OUT: 'build.min.js',
   OUT: 'build.js',
   DEST_SRC: 'dist/ui',
@@ -43,6 +44,11 @@ gulp.task('copy', function(){
 
 gulp.task('copy-css', function() {
   gulp.src(path.CSS)
+    .pipe(gulp.dest(path.DEST_SRC));
+});
+
+gulp.task('copy-images', function() {
+  gulp.src(path.IMAGES)
     .pipe(gulp.dest(path.DEST_SRC));
 });
 

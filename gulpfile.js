@@ -14,11 +14,12 @@ var reactify = require('reactify');
 var streamify = require('gulp-streamify');
 var htmlreplace = require('gulp-html-replace');
 var nodemon = require('gulp-nodemon');
+var imagemin = require('gulp-imagemin');
 
 var path = {
   HTML: 'ui/index.html',
   CSS: 'ui/styles/main.css',
-  IMAGES: '/ui/imgs/**/*.{png,gif}',
+  IMAGES: 'ui/imgs/**/*.+(png|gif)',
   MINIFIED_OUT: 'build.min.js',
   OUT: 'build.js',
   DEST_SRC: 'dist/ui',
@@ -47,9 +48,10 @@ gulp.task('copy-css', function() {
     .pipe(gulp.dest(path.DEST_SRC));
 });
 
-gulp.task('copy-images', function() {
-  gulp.src(path.IMAGES)
-    .pipe(gulp.dest(path.DEST_SRC));
+gulp.task('images', function(){
+  return gulp.src(path.IMAGES)
+    .pipe(imagemin())
+    .pipe(gulp.dest(path.DEST_SRC + '/images'));
 });
 
 gulp.task('serve', function(){

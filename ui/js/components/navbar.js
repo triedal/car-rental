@@ -1,6 +1,10 @@
 var React = require('react');
+var Router = require('../router');
 
 var Navbar = React.createClass({
+  handleClick: function(path, e) {
+    Router.navigate(path, true);
+  },
   render: function() {
     return (
       <nav className="navbar navbar-new" role="navigation">
@@ -12,12 +16,12 @@ var Navbar = React.createClass({
                       <span className="icon-bar"></span>
                       <span className="icon-bar"></span>
                   </button>
-                  <a className="navbar-brand" href="#">Renty</a>
+                  <a className="navbar-brand" onClick={this.handleClick.bind(this, '')}>Renty</a>
               </div>
               <div className="collapse navbar-collapse navbar-right" id="navbar1">
                   <ul className="nav navbar-nav">
-                      <li className="active"><a href="#">Home</a></li>
-                      <li><a href="#">Vehicle Models</a></li>
+                      <li className="active"><a onClick={this.handleClick.bind(this, '')}>Home</a></li>
+                      <li><a onClick={this.handleClick.bind(this, 'vehicle-models')}>Vehicle Models</a></li>
                       <li><a href="#">Contact</a></li>
                   </ul>
               </div>

@@ -22,7 +22,7 @@ var Navbar = React.createClass({
                   <ul className="nav navbar-nav">
                       <li className="active"><a onClick={this.handleClick.bind(this, '')}>Home</a></li>
                       <li><a onClick={this.handleClick.bind(this, 'vehicle-models')}>Vehicle Models</a></li>
-                      <li><a href="#">Contact</a></li>
+                      <li><a onClick={this.handleClick.bind(this, 'contact')}>Contact</a></li>
                   </ul>
               </div>
           </div>

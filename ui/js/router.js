@@ -2,14 +2,16 @@ var Backbone = require('backbone');
 
 var handlers = {
   index: require('./components/reserve'),
-  models: require('./components/vehicleModels')
+  models: require('./components/vehicleModels'),
+  contact: require('./components/contact')
 }
 
 var Router = Backbone.Router.extend({
 
   routes: {
     '': 'index',
-    'vehicle-models': 'models'
+    'vehicle-models': 'models',
+    'contact': 'contact'
   }
 
 });

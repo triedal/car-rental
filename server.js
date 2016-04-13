@@ -26,11 +26,6 @@ app.use(express.static(path.join(__dirname, '/node_modules/bootstrap/dist/')));
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
-// This serves as the entry point into the app
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
-
 // API Router Stuff
 //
 // Vehicles ----------------------------
@@ -241,6 +236,11 @@ router.route('/contracts/:id')
 
 
 app.use('/api', router);
+
+// This serves as the entry point into the app
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 // This serves the web app on the specified port (localhost:3000)
 app.listen(port);

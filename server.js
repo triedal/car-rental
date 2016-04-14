@@ -2,9 +2,11 @@ var express = require('express');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var path = require('path');
+var subdomain = require('express-subdomain');
 
 var app = express();
 var router = express.Router();
+var dashRouter = express.Router();
 
 var port = process.env.PORT || 3000;
 
@@ -18,9 +20,12 @@ var pool = mysql.createPool({
   acquireTimeout: 30000 // 30s
 });
 
-// Serve up static files needed
-app.use(express.static(path.join(__dirname, 'dist')));
-app.use(express.static(path.join(__dirname, '/node_modules/bootstrap/dist/')));
+// Subdomain router for dashboard.renty.com
+dashRouter.get('/', function(req, res) {
+  res.send('Welcome to the dashboard!');
+});
+
+app.use(subdomain('dashboard', dashRouter));
 
 // bodyParser setup
 app.use(bodyParser.urlencoded({ extended: false}));
@@ -234,8 +239,11 @@ router.route('/contracts/:id')
     });
   });
 
-
 app.use('/api', router);
+
+// Serve up static files needed
+app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, '/node_modules/bootstrap/dist/')));
 
 // This serves as the entry point into the app
 app.get('*', function(req, res) {

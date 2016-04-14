@@ -25,6 +25,7 @@ body {
     margin: 0;
     height: 96px;
     padding-top: 21px;
+    border-bottom: 1px solid #716d6e;
 }
 
 .navbar-new .container-fluid {
@@ -277,7 +278,7 @@ body {
 */
 
 #vehicles {
-  margin-top: 90px;
+  margin-top: 50px;
   position: relative;
   z-index: 2;
 }

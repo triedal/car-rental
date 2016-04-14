@@ -271,3 +271,283 @@ body {
     line-height: 400px;
     padding: 50px 0px 0px 0px;
 }
+
+/*
+---------- VEHICLES -----------
+*/
+
+#vehicles {
+  margin-top: 90px;
+  position: relative;
+  z-index: 2;
+}
+#vehicles .title {
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 65px;
+}
+#vehicles .subtitle {
+  font-weight: normal;
+}
+#vehicles .vehicle-nav-row {
+  padding-right: 0;
+}
+#vehicles #vehicle-nav-container {
+  height: 365px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1px;
+}
+#vehicles .vehicle-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  top: 0px;
+  position: absolute;
+  width: 100%;
+}
+#vehicles .vehicle-nav-control {
+  padding-right: 10px;
+}
+#vehicles .vehicle-nav-control a {
+  width: 50%;
+  height: 40px;
+  display: block;
+  background-color: #716d6e;
+  text-align: center;
+  float: left;
+  color: #fff;
+  line-height: 40px;
+  font-size: 24px;
+  transition: all 0.25s ease-in-out;
+}
+#vehicles .vehicle-nav-control a:first-of-type {
+  border-right: 1px solid #fff;
+}
+#vehicles .vehicle-nav-control a:hover {
+  background-color: rgba(255, 191, 0, 0.4);
+  color: #716d6e;
+}
+#vehicles .vehicle-nav li {
+  background-color: #e3e2e2;
+  margin-bottom: 1px;
+  position: relative;
+  transition: .2s;
+  margin-right: 10px;
+}
+#vehicles .vehicle-nav li span {
+  width: 0px;
+  height: 0px;
+  border-left: 10px solid #fff;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  display: block;
+  position: absolute;
+  right: -10px;
+  top: 20px;
+  transition: 0.2s;
+}
+#vehicles .vehicle-nav li:hover {
+  background-color: #d1cece;
+}
+#vehicles .vehicle-nav li.active {
+  background-color: rgba(255, 191, 0, 0.4);
+  font-weight: bold;
+}
+#vehicles .vehicle-nav li.active span {
+  border-left-color: rgba(255, 191, 0, 0.4);
+}
+#vehicles .vehicle-nav li a {
+  font-size: 18px;
+  color: #716d6e;
+  padding-left: 15px;
+  display: block;
+  height: 60px;
+  line-height: 60px;
+}
+#vehicles .styled-select-vehicle-data {
+  border: 2px solid #efe9e9;
+  height: 43px;
+  position: relative;
+  width: 100%;
+  display: none;
+}
+#vehicles .styled-select-vehicle-data:after {
+  content: '';
+  background: #ffffff url('../img/dropdown-icon.png') no-repeat 5px 18px;
+  right: 0px;
+  top: 0px;
+  width: 30px;
+  height: 39px;
+  position: absolute;
+  pointer-events: none;
+}
+#vehicles .styled-select-vehicle-data select {
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  background-image: none;
+  background: #fff;
+  -webkit-appearance: none;
+  padding: 1px 10px;
+  height: 39px;
+}
+#vehicles .vehicle-img {
+  text-align: center;
+}
+#vehicles .vehicle-img img {
+  display: inline-block;
+}
+#vehicles .vehicle-price {
+  background-color: rgba(255, 191, 0, 0.4);
+  height: 53px;
+  line-height: 53px;
+  padding: 0 10px;
+  font-size: 24px;
+  font-weight: 900;
+}
+#vehicles .vehicle-price .info {
+  font-weight: normal;
+  font-size: 18px;
+}
+#vehicles .reserve-button {
+  background-color: #ffbf00;
+  color: #fff;
+  display: block;
+  height: 50px;
+  line-height: 51px;
+  font-size: 24px;
+  font-weight: 900;
+  padding: 0 15px;
+  box-shadow: 6px 6px 0 #efe9e9;
+  text-transform: uppercase;
+  transition: .2s;
+  text-decoration: none;
+}
+#vehicles .reserve-button:hover {
+  background-color: #716d6e;
+}
+#vehicles .reserve-button span {
+  margin-right: 7px;
+}
+
+/*
+---------- CONTACT -----------
+*/
+
+#contact {
+  margin-top: 90px;
+  position: relative;
+  z-index: 2;
+}
+#contact h2 {
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 65px;
+}
+#contact .contact-info {
+  font-size: 18px;
+  margin-bottom: 35px;
+  line-height: 1.7;
+}
+#contact .contact-info .address {
+  font-weight: 900;
+}
+#contact .contact-info .highlight {
+  color: #ffbf00;
+}
+#contact form .form-group {
+  margin-bottom: 20px;
+}
+#contact form .text-field {
+  background-color: #dbdbdb;
+  height: 45px;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  font-size: 18px;
+}
+#contact form textarea {
+  background-color: #dbdbdb;
+  height: 196px;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  font-size: 18px;
+}
+#contact form ::-webkit-input-placeholder {
+  font-size: 18px !important;
+  font-weight: bold;
+}
+#contact form :-moz-placeholder {
+  font-size: 18px !important;
+  font-weight: bold;
+}
+#contact form ::-moz-placeholder {
+  font-size: 18px !important;
+  font-weight: bold;
+}
+#contact form :-ms-input-placeholder {
+  font-size: 18px !important;
+  font-weight: bold;
+}
+#contact form .first-name {
+  float: left;
+  width: 49%;
+}
+#contact form .last-name {
+  float: right;
+  width: 49%;
+}
+#contact form .btn-border {
+  border: 1px solid #ffd992;
+  padding: 1px;
+  margin: 0 20px 0 0;
+  display: inline-block;
+}
+#contact form .submit-message {
+  font-size: 24px;
+  font-weight: 900;
+  background-color: #ffbf00;
+  color: #fff;
+  border: none;
+  line-height: 47px;
+  padding: 0 15px;
+  box-shadow: 6px 6px 0 #efe9e9;
+  text-transform: uppercase;
+  transition: .2s;
+  border-radius: 0;
+}
+#contact form .submit-message:hover {
+  background-color: #716d6e;
+}
+#contact .contact-box-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+#contact .contact-box {
+  background-color: #ededed;
+  padding: 20px;
+}
+#contact .contact-box .highlight {
+  font-weight: bold;
+  color: #ffbf00;
+}
+#contact .contact-box img {
+  border: 1px solid #ffbf00;
+  float: left;
+  margin-right: 20px;
+}
+#contact .contact-box-name {
+  font-size: 24px;
+  font-weight: bold;
+}
+#contact .contact-box-border {
+  background-color: #ffbf00;
+  height: 10px;
+  margin-top: 1px;
+  margin-bottom: 8px;
+}
+#contact .contact-box-divider {
+  height: 10px;
+}

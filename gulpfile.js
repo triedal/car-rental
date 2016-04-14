@@ -15,11 +15,12 @@ var streamify = require('gulp-streamify');
 var htmlreplace = require('gulp-html-replace');
 var nodemon = require('gulp-nodemon');
 var imagemin = require('gulp-imagemin');
+var eslint = require('gulp-eslint');
 
 var path = {
   HTML: 'ui/index.html',
   CSS: 'ui/styles/main.css',
-  IMAGES: 'ui/imgs/**/*.+(png|gif)',
+  IMAGES: 'ui/imgs/**/*.+(png|gif|jpg)',
   MINIFIED_OUT: 'build.min.js',
   OUT: 'build.js',
   DEST_SRC: 'dist/ui',
@@ -51,13 +52,30 @@ gulp.task('copy-css', function() {
 gulp.task('images', function(){
   return gulp.src(path.IMAGES)
     .pipe(imagemin())
-    .pipe(gulp.dest(path.DEST_SRC + '/images'));
+    .pipe(gulp.dest(path.DEST_SRC + '/imgs'));
 });
 
 gulp.task('serve', function(){
   nodemon({
   	script: 'server.js'
   })
+});
+
+gulp.task('lint', function () {
+  // ESLint ignores files with "node_modules" paths. 
+  // So, it's best to have gulp ignore the directory as well. 
+  // Also, Be sure to return the stream from the task; 
+  // Otherwise, the task may end before the stream has finished. 
+  return gulp.src(['**/*.js','!node_modules/**'])
+      // eslint() attaches the lint output to the "eslint" property 
+      // of the file object so it can be used by other modules. 
+      .pipe(eslint())
+      // eslint.format() outputs the lint results to the console. 
+      // Alternatively use eslint.formatEach() (see Docs). 
+      .pipe(eslint.format())
+      // To have the process exit with an error code (1) on 
+      // lint error, return the stream and pipe to failAfterError last. 
+      .pipe(eslint.failAfterError());
 });
 
 // Main tasks

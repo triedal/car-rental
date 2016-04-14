@@ -1,8 +1,13 @@
 var React = require('react');
 var Router = require('../router');
+var $ = require('jquery');
 
 var Navbar = React.createClass({
   handleClick: function(path, e) {
+     $('.nav li').removeClass('active');
+    var target = $(e.target).parent();
+    $(target).addClass('active');
+
     Router.navigate(path, true);
   },
   render: function() {
@@ -20,7 +25,7 @@ var Navbar = React.createClass({
               </div>
               <div className="collapse navbar-collapse navbar-right" id="navbar1">
                   <ul className="nav navbar-nav">
-                      <li className="active"><a onClick={this.handleClick.bind(this, '')}>Home</a></li>
+                      <li><a onClick={this.handleClick.bind(this, '')}>Home</a></li>
                       <li><a onClick={this.handleClick.bind(this, 'vehicle-models')}>Vehicle Models</a></li>
                       <li><a onClick={this.handleClick.bind(this, 'contact')}>Contact</a></li>
                   </ul>

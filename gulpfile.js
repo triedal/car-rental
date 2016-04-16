@@ -18,7 +18,7 @@ var imagemin = require('gulp-imagemin');
 var eslint = require('gulp-eslint');
 
 var path = {
-  HTML: 'ui/index.html',
+  HTML: 'ui/*.html',
   CSS: 'ui/styles/main.css',
   IMAGES: 'ui/imgs/**/*.+(png|gif|jpg)',
   MINIFIED_OUT: 'build.min.js',

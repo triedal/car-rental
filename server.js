@@ -22,8 +22,14 @@ var pool = mysql.createPool({
 
 // Subdomain router for dashboard.renty.com
 dashRouter.get('/', function(req, res) {
-  res.send('Welcome to the dashboard!');
+  res.sendFile(path.join(__dirname, 'dist/dashboard.html'));
 });
+
+dashRouter.get('/*', function(req, res) {
+  res.sendStatus(404);
+});
+
+
 
 app.use(subdomain('dashboard', dashRouter));
 
@@ -52,13 +58,15 @@ router.route('/vehicles')
       if (err) throw err;
 
       var type = req.body.type;
-      var status = req.body.status;
+      var year = req.body.year;
+      var make = req.body.make;
+      var model = req.body.model;
       var vin = req.body.vin;
-      var meterReading = req.body.meterReading;
-      var costPerMile = req.body.costPerMile;
-
-      connection.query('INSERT INTO Vehicles (type, status, vin_num, meter_reading, cost_per_mile) VALUES (?, ?, ?, ?, ?)',
-        [type, status, vin, meterReading, costPerMile],
+      var odometer = req.body.odometer;
+      var cost = req.body.cost;
+      
+      connection.query('INSERT INTO Vehicles (type, year, make, model, vin_num, odometer, cost_per_day) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        [type, year, make, model, vin, odometer, cost],
         function(err,rows) {
           if (err) throw err;
           connection.release();

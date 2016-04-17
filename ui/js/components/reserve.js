@@ -1,7 +1,19 @@
 var React = require('react');
+var _ = require('lodash');
 
 var Reserve = React.createClass({
+  buildOptions: function() {
+    var vehicleChoices = [];
+    _(this.props.vehicles).forEach(function(vehicle, index) {
+      vehicleChoices.push(
+        <option key={index} value={vehicle.make + ' ' + vehicle.model}>{vehicle.make} {vehicle.model}</option>
+      );
+    });
+    var options = _.uniqBy(vehicleChoices, 'props.value');
+    return options;
+  },
   render: function () {
+    var options = this.buildOptions();
     return (
       <div id="teaser">
       	<div className="container-fluid max-width">
@@ -18,13 +30,7 @@ var Reserve = React.createClass({
                   <h1>book a car</h1>
                   <div className="styled-select-car">
                     <select name="car-select" id="car-select">
-                      <option value="">Select your car type</option>
-                      <option value="">VW Golf VII</option>
-                      <option value="">Audi A1 S-LINE</option>
-                      <option value="">Toyota Camry</option>
-                      <option value="">BMW 320 ModernLine</option>
-                      <option value="">Mercedes-Benz GLK</option>
-                      <option value="">VW Passat CC</option>
+                      {options}
                     </select>
                   </div><div className="datetime pick-up">
                       <div className="date pull-left">

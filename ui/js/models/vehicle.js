@@ -2,7 +2,7 @@ var Backbone = require('backbone');
 
 var Vehicle = Backbone.Model.extend({
   url: function() {
-    return this.id ? '/vehicles/' + this.id :  '/vehicles';
+    return this.id ? 'api/vehicles/' + this.id :  'api/vehicles';
   }
 });
 

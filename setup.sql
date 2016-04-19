@@ -3,7 +3,7 @@ CREATE DATABASE CarRental;
 USE CarRental;
 
 CREATE TABLE Vehicles (
-	vehicle_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	vehicle_id INT UNSIGNED AUTO_INCREMENT,
   type ENUM('coupe', 'sedan', 'suv', 'truck', 'other'),
   year INT(4) UNSIGNED NOT NULL,
   make VARCHAR(20) NOT NULL,
@@ -11,23 +11,30 @@ CREATE TABLE Vehicles (
   status ENUM('available', 'unavailable') DEFAULT 'available',
 	vin_num VARCHAR(17) NOT NULL,
   odometer INT(6) UNSIGNED NOT NULL,
-  cost_per_day INT UNSIGNED NOT NULL
+  cost_per_day INT UNSIGNED NOT NULL,
+  PRIMARY KEY(vehicle_id)
 );
 
 CREATE TABLE Customers (
-  cust_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  cust_id INT UNSIGNED AUTO_INCREMENT,
   firstname VARCHAR(10),
-  lastname VARCHAR(10)
+  lastname VARCHAR(10),
+  PRIMARY KEY(cust_id)
 );
 
 CREATE TABLE RentalContracts (
-  contract_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  cust_id INT UNSIGNED REFERENCES Customers(cust_id),
-  vehicle_id INT UNSIGNED REFERENCES Vehicles(vehicle_id),
+  contract_id INT UNSIGNED AUTO_INCREMENT,
+  cust_id INT UNSIGNED,
+  vehicle_id INT UNSIGNED, 
   meter_out INT(6) UNSIGNED,
   meter_in INT(6) UNSIGNED,
   cost_per_day INT,
   reg_date DATETIME NOT NULL
+  PRIMARY KEY(contract_id),
+  FOREIGN KEY(cust_id) REFERENCES Customers(cust_id),
+  FOREIGN KEY(vehicle_id) REFERENCES Vehicles(vehicle_id)
+
+  
 );
 
 INSERT INTO Vehicles (type, year, make, model, vin_num, odometer, cost_per_day) VALUES

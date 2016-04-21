@@ -1,18 +1,40 @@
 var React = require('react');
 
-var VehicleModel = React.createClass({
+var VehicleModels = React.createClass({
+  getInitialState: function() {
+    return {
+      vehicle: {
+        cost_per_day: null,
+        make: null,
+        model: null,
+        odometer: null,
+        status: null,
+        type: null,
+        vehicle_id: null,
+        vin_num: null,
+        year: null
+      }
+    };
+  },
+  handleClick: function(vehicle, e) {
+    var vehicleAttrs = vehicle.vehicle
+    this.setState({
+      vehicle: vehicleAttrs
+    });    
+  },
   buildVehicleList: function() {
+    var _this = this;
     var vehicleChoices = [];
     _(this.props.vehicles).forEach(function(vehicle, index) {
       vehicleChoices.push(
-        <li key={index} className="" name={vehicle.make + ' ' + vehicle.model}>
+        <li key={index} data-make={vehicle.make} data-model={vehicle.model} onClick={_this.handleClick.bind(null, {vehicle} )}>
           <a>{vehicle.make + ' ' + vehicle.model}</a>
           <span className="">&nbsp;</span>
         </li>
       );
     });
-    console.log(vehicleChoices);
-    var options = _.uniqBy(vehicleChoices, 'props.name');
+    //console.log(vehicleChoices);
+    var options = _.uniqBy(vehicleChoices, 'props.data-model');
     return options;
   },
   render: function() {
@@ -38,30 +60,30 @@ var VehicleModel = React.createClass({
             <div className="vehicle-data">
               <div className="col-md-6">
                 <div className="vehicle-img">
-                  <img className="img-respnsive" src="ui/imgs/vehicle5.jpg" alt="Vehicle" />
+                  <img className="img-respnsive" src={"ui/imgs/" + this.state.vehicle.model + ".jpg"} alt="Vehicle" />
                 </div>
               </div>
               <div className="col-md-3">
                 <div className="vehicle-price">
-                  $ 100.40 <span className="info">per day</span>
+                  $ {this.state.vehicle.cost_per_day} <span className="info">per day</span>
                 </div>
                 <table className="table vehicle-features">
                   <tbody>
                     <tr>
+                      <td>Make</td>
+                      <td>{this.state.vehicle.make}</td>
+                    </tr>
+                    <tr>
                       <td>Model</td>
-                      <td>Limousine</td>
+                      <td>{this.state.vehicle.model}</td>
+                    </tr>
+                    <tr>
+                      <td>Year</td>
+                      <td>{this.state.vehicle.year}</td>
                     </tr>
                     <tr>
                       <td>Doors</td>
                       <td>4</td>
-                    </tr>
-                    <tr>
-                      <td>Seats</td>
-                      <td>5</td>
-                    </tr>
-                    <tr>
-                      <td>Luggage</td>
-                      <td>2 Suitcases / 2 Bags</td>
                     </tr>
                     <tr>
                       <td>Transmission</td>
@@ -70,10 +92,6 @@ var VehicleModel = React.createClass({
                     <tr>
                       <td>Air conditioning</td>
                       <td>Yes</td>
-                    </tr>
-                    <tr>
-                      <td>Minimum age</td>
-                      <td>25 years</td>
                     </tr>
                   </tbody>
                 </table>
@@ -87,4 +105,4 @@ var VehicleModel = React.createClass({
   }
 });
 
-module.exports = VehicleModel;
+module.exports = VehicleModels;

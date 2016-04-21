@@ -11,6 +11,7 @@ var App = React.createClass({
   componentDidMount: function() {
     var _this = this;
     window.app = window.app || {};
+    window.app.router = Router;
     window.app.vehicles = new Vehicles();
     window.app.vehicles.fetch({
     success: function(vehicles) {

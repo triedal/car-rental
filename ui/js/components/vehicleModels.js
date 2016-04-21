@@ -1,22 +1,30 @@
 var React = require('react');
+var Router = require('../router');
+var $ = require('jquery');
 
 var VehicleModels = React.createClass({
   getInitialState: function() {
     return {
       vehicle: {
-        cost_per_day: null,
-        make: null,
-        model: null,
+        cost_per_day: 37,
+        make: 'Mercedes-Benz',
+        model: 'GLK350',
         odometer: null,
         status: null,
         type: null,
         vehicle_id: null,
         vin_num: null,
-        year: null
+        year: '2013'
       }
     };
   },
-  handleClick: function(vehicle, e) {
+  reserveClick: function() {
+    // FIXME: This is super hacky
+    $('.nav li').removeClass('active');
+    $('.nav li').first().addClass('active');
+    window.app.router.navigate('', true);
+  },
+  vehicleNavClick: function(vehicle, e) {
     var vehicleAttrs = vehicle.vehicle
     this.setState({
       vehicle: vehicleAttrs
@@ -27,7 +35,7 @@ var VehicleModels = React.createClass({
     var vehicleChoices = [];
     _(this.props.vehicles).forEach(function(vehicle, index) {
       vehicleChoices.push(
-        <li key={index} data-make={vehicle.make} data-model={vehicle.model} onClick={_this.handleClick.bind(null, {vehicle} )}>
+        <li key={index} data-make={vehicle.make} data-model={vehicle.model} onClick={_this.vehicleNavClick.bind(null, {vehicle} )}>
           <a>{vehicle.make + ' ' + vehicle.model}</a>
           <span className="">&nbsp;</span>
         </li>
@@ -95,7 +103,7 @@ var VehicleModels = React.createClass({
                     </tr>
                   </tbody>
                 </table>
-                <a className="reserve-button scroll-to"><span className="glyphicon glyphicon-calendar"></span>reserve now</a>
+                <a className="reserve-button scroll-to" onClick={this.reserveClick}><span className="glyphicon glyphicon-calendar"></span>reserve now</a>
               </div>
             </div>
           </div>

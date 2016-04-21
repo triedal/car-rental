@@ -8,7 +8,7 @@ var Navbar = React.createClass({
     var target = $(e.target).parent();
     $(target).addClass('active');
 
-    Router.navigate(path, true);
+    window.app.router.navigate(path, true);
   },
   render: function() {
     return (

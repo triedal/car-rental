@@ -365,6 +365,7 @@ body {
   display: block;
   height: 60px;
   line-height: 60px;
+  text-decoration: none;
 }
 #vehicles .styled-select-vehicle-data {
   border: 2px solid #efe9e9;

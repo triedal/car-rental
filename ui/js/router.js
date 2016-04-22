@@ -3,7 +3,8 @@ var Backbone = require('backbone');
 var handlers = {
   index: require('./components/reserve'),
   models: require('./components/vehicleModels'),
-  contact: require('./components/contact')
+  contact: require('./components/contact'),
+  dashboard: require('./components/dashboard')
 }
 
 var Router = Backbone.Router.extend({
@@ -11,7 +12,8 @@ var Router = Backbone.Router.extend({
   routes: {
     '': 'index',
     'vehicle-models': 'models',
-    'contact': 'contact'
+    'contact': 'contact',
+    'dashboard': 'dashboard'
   }
 
 });

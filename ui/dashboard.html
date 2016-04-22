@@ -3,6 +3,7 @@
 <head>
     <title>Dashboard | Renty</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head>
 <body>
   <h1>Welcome!</h1>
@@ -51,5 +52,21 @@
       alert('Please check required fields.');
     }
   }
+  function getVehicles() {
+    $.ajax({
+        url: 'api/vehicles',
+        type: 'GET',
+        error: function(xhr, status, error) {
+            /* clear old error message, then display the new php error message */
+            $("#divErrorMessages").empty().append(status);
+            $("#divErrorMessages").append(xhr.responseText);
+        },
+        success: function(results) { 
+            console.log(results);
+        }
+    });
+  }
+
+  this.getVehicles();
 </script>
 </html>

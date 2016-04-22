@@ -23,6 +23,7 @@ var pool = mysql.createPool({
 // Subdomain router for dashboard.renty.com
 dashRouter.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'dist/dashboard.html'));
+  res.redirect('http://renty.com:3000/dashboard');
 });
 
 dashRouter.get('/*', function(req, res) {

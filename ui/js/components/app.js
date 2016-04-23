@@ -26,7 +26,7 @@ var App = React.createClass({
       var Handler = Router.getHandler(this.props.route.name);
       return (
         <div>
-          <Navbar />
+          { this.props.route.name !== 'dashboard' ? <Navbar /> : null }
           <Handler route={this.props.route} vehicles={this.state.vehicles} />
         </div> 
       );

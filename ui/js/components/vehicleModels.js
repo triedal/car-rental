@@ -1,6 +1,7 @@
 var React = require('react');
 var Router = require('../router');
 var $ = require('jquery');
+var _ = require('lodash');
 
 var VehicleModels = React.createClass({
   getInitialState: function() {
@@ -91,7 +92,7 @@ var VehicleModels = React.createClass({
                     </tr>
                     <tr>
                       <td>Doors</td>
-                      <td>4</td>
+                      <td>{ this.state.vehicle.type === 'coupe' ? 2 : 4 }</td>
                     </tr>
                     <tr>
                       <td>Transmission</td>

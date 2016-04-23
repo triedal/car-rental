@@ -553,3 +553,22 @@ body {
 #contact .contact-box-divider {
   height: 10px;
 }
+
+/*
+---------- DASHBOARD -----------
+*/
+#dashboard form input {
+  width: 150px;
+}
+
+#dashboard form input[name=id] {
+  width: 50px;
+}
+
+#dashboard form input[name=year] {
+  width: 75px;
+}
+
+#dashboard form input, button {
+  margin-left: 5px;
+}

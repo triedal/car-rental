@@ -7,15 +7,17 @@ var VehicleModels = React.createClass({
   getInitialState: function() {
     return {
       vehicle: {
-        cost_per_day: 37,
-        make: 'Mercedes-Benz',
-        model: 'GLK350',
-        odometer: null,
-        status: null,
-        type: null,
-        vehicle_id: null,
-        vin_num: null,
-        year: '2013'
+        attributes: {
+          cost_per_day: 37,
+          make: 'Mercedes-Benz',
+          model: 'GLK350',
+          odometer: null,
+          status: null,
+          type: null,
+          vehicle_id: null,
+          vin_num: null,
+          year: '2013'
+        }
       }
     };
   },
@@ -26,23 +28,21 @@ var VehicleModels = React.createClass({
     window.app.router.navigate('', true);
   },
   vehicleNavClick: function(vehicle, e) {
-    var vehicleAttrs = vehicle.vehicle
     this.setState({
-      vehicle: vehicleAttrs
+      vehicle: vehicle.vehicle
     });    
   },
   buildVehicleList: function() {
     var _this = this;
     var vehicleChoices = [];
-    _(this.props.vehicles).forEach(function(vehicle, index) {
+    _(this.props.vehicles.models).forEach(function(vehicle, index) {
       vehicleChoices.push(
-        <li key={index} data-make={vehicle.make} data-model={vehicle.model} onClick={_this.vehicleNavClick.bind(null, {vehicle} )}>
-          <a>{vehicle.make + ' ' + vehicle.model}</a>
+        <li key={index} data-make={vehicle.attributes.make} data-model={vehicle.attributes.model} onClick={_this.vehicleNavClick.bind(null, {vehicle} )}>
+          <a>{vehicle.attributes.make + ' ' + vehicle.attributes.model}</a>
           <span className="">&nbsp;</span>
         </li>
       );
     });
-    //console.log(vehicleChoices);
     var options = _.uniqBy(vehicleChoices, 'props.data-model');
     return options;
   },
@@ -69,30 +69,30 @@ var VehicleModels = React.createClass({
             <div className="vehicle-data">
               <div className="col-md-6">
                 <div className="vehicle-img">
-                  <img className="img-respnsive" src={"ui/imgs/" + this.state.vehicle.model + ".jpg"} alt="Vehicle" />
+                  <img className="img-respnsive" src={"ui/imgs/" + this.state.vehicle.attributes.model + ".jpg"} alt="Vehicle" />
                 </div>
               </div>
               <div className="col-md-3">
                 <div className="vehicle-price">
-                  $ {this.state.vehicle.cost_per_day} <span className="info">per day</span>
+                  $ {this.state.vehicle.attributes.cost_per_day} <span className="info">per day</span>
                 </div>
                 <table className="table vehicle-features">
                   <tbody>
                     <tr>
                       <td>Make</td>
-                      <td>{this.state.vehicle.make}</td>
+                      <td>{this.state.vehicle.attributes.make}</td>
                     </tr>
                     <tr>
                       <td>Model</td>
-                      <td>{this.state.vehicle.model}</td>
+                      <td>{this.state.vehicle.attributes.model}</td>
                     </tr>
                     <tr>
                       <td>Year</td>
-                      <td>{this.state.vehicle.year}</td>
+                      <td>{this.state.vehicle.attributes.year}</td>
                     </tr>
                     <tr>
                       <td>Doors</td>
-                      <td>{ this.state.vehicle.type === 'coupe' ? 2 : 4 }</td>
+                      <td>{ this.state.vehicle.attributes.type === 'coupe' ? 2 : 4 }</td>
                     </tr>
                     <tr>
                       <td>Transmission</td>

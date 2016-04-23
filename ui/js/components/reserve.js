@@ -4,9 +4,9 @@ var _ = require('lodash');
 var Reserve = React.createClass({
   buildOptions: function() {
     var vehicleChoices = [];
-    _(this.props.vehicles).forEach(function(vehicle, index) {
+    _(this.props.vehicles.models).forEach(function(vehicle, index) {
       vehicleChoices.push(
-        <option key={index} value={vehicle.make + ' ' + vehicle.model}>{vehicle.make} {vehicle.model}</option>
+        <option key={index} value={vehicle.attributes.make + ' ' + vehicle.attributes.model}>{vehicle.attributes.make} {vehicle.attributes.model}</option>
       );
     });
     var options = _.uniqBy(vehicleChoices, 'props.value');

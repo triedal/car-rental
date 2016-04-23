@@ -15,7 +15,7 @@ var App = React.createClass({
     window.app.vehicles = new Vehicles();
     window.app.vehicles.fetch({
     success: function(vehicles) {
-      this.setState({vehicles: vehicles.attributes});
+      this.setState({vehicles: vehicles});
     }.bind(this),
     error: function() {
       console.log('error');

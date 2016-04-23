@@ -62,16 +62,16 @@ router.route('/vehicles')
       var year = req.body.year;
       var make = req.body.make;
       var model = req.body.model;
-      var vin = req.body.vin;
+      var vin = req.body.vin_num;
       var odometer = req.body.odometer;
-      var cost = req.body.cost;
+      var cost = req.body.cost_per_day;
       
       connection.query('INSERT INTO Vehicles (type, year, make, model, vin_num, odometer, cost_per_day) VALUES (?, ?, ?, ?, ?, ?, ?)',
         [type, year, make, model, vin, odometer, cost],
         function(err,rows) {
           if (err) throw err;
           connection.release();
-          if(!err) res.json(rows);      
+          if(!err) res.json(req.body);      
         });
     });
   });
@@ -83,7 +83,7 @@ router.route('/vehicles/:id')
       connection.query('SELECT * FROM Vehicles WHERE vehicle_id = ?', [req.params.id], function(err,rows) {
         if (err) throw err;
         connection.release();
-        if(!err) res.json(rows);      
+        if(!err) res.sendStatus(200);      
       });
     });
   })
@@ -92,11 +92,10 @@ router.route('/vehicles/:id')
   .put(function(req, res) {
     pool.getConnection(function(err,connection){
       if (err) throw err;
-      
-      connection.query('UPDATE Vehicles SET ? WHERE ?', [req.body, req.params.id], function(err,rows) {
+      connection.query('UPDATE Vehicles SET ? WHERE vehicle_id = ?', [req.body, parseInt(req.params.id)], function(err,rows) {
         if (err) throw err;
         connection.release();
-        if(!err) res.json(rows);      
+        if(!err) res.json(req.body);      
       });
     });
   })

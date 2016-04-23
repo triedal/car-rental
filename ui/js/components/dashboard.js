@@ -1,35 +1,88 @@
 var React = require('react');
 var _ = require('lodash');
+var Vehicle = require('../models/vehicle');
 
 var Dashboard = React.createClass({
   vehicleRows: function() {
     var _this = this;
     var rows = [];
-    _(this.props.vehicles).forEach(function(vehicle, index) {
+    _(this.props.vehicles.models).forEach(function(vehicle, index) {
       rows.push(
-        <tr>
-          <td>{vehicle.vehicle_id}</td>
-          <td>{vehicle.year}</td>
-          <td>{vehicle.make}</td>
-          <td>{vehicle.model}</td>
-          <td>{vehicle.odometer} mi.</td>
-          <td>{vehicle.status}</td>
-          <td>{vehicle.vin_num}</td>
-          <td>{vehicle.type}</td>
+        <tr key={index}>
+          <td>{vehicle.id}</td>
+          <td>{vehicle.attributes.year}</td>
+          <td>{vehicle.attributes.make}</td>
+          <td>{vehicle.attributes.model}</td>
+          <td>{vehicle.attributes.odometer} mi.</td>
+          <td>{vehicle.attributes.status}</td>
+          <td>{vehicle.attributes.vin_num}</td>
+          <td>{vehicle.attributes.type}</td>
+          <td>${vehicle.attributes.cost_per_day}</td>
         </tr>
       );
     });
     return rows;
   },
   submitForm: function(e) {
+    var _this = this; 
+
+    e.preventDefault()
     var form = document.getElementsByName('vehicle-post')[0];
-    if (form.checkValidity()) {
-      form.submit();
-      form.reset();
-      return false;
+    
+    var id = form.elements['id'].value
+    var year = form.elements['year'].value
+    var make = form.elements['make'].value
+    var model = form.elements['model'].value
+    var vin = form.elements['vin'].value
+    var odometer = form.elements['odometer'].value
+    var cost = form.elements['cost'].value
+    var type = form.elements['type'].value
+
+    
+    if (id) {
+      // PUT request
+      var vehicle = window.app.vehicles.get(id)
+      vehicle.set({
+        cost_per_day: cost,
+        make: make,
+        model: model,
+        odometer: odometer,
+        type: type,
+        year: year,
+        vin_num: vin
+      });
+
+      vehicle.save(null, {
+        dataType: 'text',
+        success: function() {
+          _this.forceUpdate();
+        },
+        error: function() {
+          alert('An error occured :(');
+        }
+      });
     } else {
-      alert('Please check required fields.');
+      // POST request
+      var vehicle = new Vehicle({
+        cost_per_day: cost,
+        make: make,
+        model: model,
+        odometer: odometer,
+        type: type,
+        year: year,
+        vin_num: vin
+      });
+
+      vehicle.save(null, {
+        success: function() {
+          vehicle.set({vehicle_id: window.app.vehicles.length + 1})
+          window.app.vehicles.add(vehicle);
+          _this.forceUpdate();
+        }
+      });
     }
+
+    form.reset();
   },
 	render: function() {
     var vehicleRows = this.vehicleRows();
@@ -51,6 +104,7 @@ var Dashboard = React.createClass({
                     <th>Status</th>
                     <th>VIN</th>
                     <th>Type</th>
+                    <th>Cost</th>
                   </tr>
                 </thead>
                 <tbody>

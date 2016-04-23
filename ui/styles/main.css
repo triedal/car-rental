@@ -572,3 +572,11 @@ body {
 #dashboard form input, button {
   margin-left: 5px;
 }
+
+#dashboard .table td:nth-child(8) {
+  text-transform: uppercase;
+}
+
+#dashboard .table td:nth-child(6) {
+  text-transform: capitalize;
+}

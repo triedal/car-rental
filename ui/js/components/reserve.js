@@ -2,6 +2,9 @@ var React = require('react');
 var _ = require('lodash');
 
 var Reserve = React.createClass({
+  completeReservation: function() {
+    console.log('complte');
+  },
   buildOptions: function() {
     var vehicleChoices = [];
     _(this.props.vehicles.models).forEach(function(vehicle, index) {
@@ -158,11 +161,45 @@ var Reserve = React.createClass({
                       </div>
                       <div className="clearfix"></div>
                     </div>
-                  <input type="submit" className="submit" value="reserve car now" id="checkoutModalLabel" />
+                  <input type="button" className="submit" value="reserve car now" id="checkoutModalLabel" data-toggle="modal" data-target="#reserveModal" />
                 </form>
               </div>
             </div>
       		</div>
+
+          
+          <div className="modal fade" id="reserveModal" role="dialog">
+            <div className="modal-dialog">
+            
+              
+              <div className="modal-content">
+                <div className="modal-header">
+                  <button type="button" className="close" data-dismiss="modal">&times;</button>
+                  <h4 className="modal-title">Complete Reservation</h4>
+                </div>
+                <div className="modal-body">
+                  <p>Almost done! We just need a bit more information from you.</p>
+                  <form>
+                      <div className="form-group">
+                          <label>First Name:</label>
+                          <input type="text" className="form-control" id="inputEmail" placeholder="Enter your first name" />
+                      </div>
+                      <div className="form-group">
+                          <label>Last Name:</label>
+                          <input type="text" className="form-control" id="inputPassword" placeholder="Enter your last name" />
+                      </div>
+                  </form>
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.completeReservation}>Reserve</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+
       	</div>
       </div>
     );

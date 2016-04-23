@@ -580,3 +580,16 @@ body {
 #dashboard .table td:nth-child(6) {
   text-transform: capitalize;
 }
+
+/*
+---------- MODAL -----------
+*/
+
+#reserveModal .modal-body p {
+  padding-left: 34px;
+  padding-top: 20px;
+}
+
+#reserveModal .modal-body label {
+  font-weight: bold;
+}

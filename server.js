@@ -178,7 +178,7 @@ router.route('/customers/:id')
 
 // Rental contracts ------------------
 router.route('/contracts')
-  // Get all customers
+  // Get all contracts
   .get(function(req, res) {
     pool.getConnection(function(err,connection){
       if (err) throw err;
@@ -194,15 +194,16 @@ router.route('/contracts')
     pool.getConnection(function(err,connection){
       if (err) throw err;
 
-      var custId = req.body.custId;
-      var vehicleId = req.body.vehicleId;
-      var meterOut = req.body.meterOut;
+      var custId = req.body.cust_id;
+      var vehicleId = req.body.vehicle_id;
+      var meterOut = req.body.meter_out;
       var meterIn = null;
-      var costPerMile = req.body.costPerMile;
-      var date = req.body.date;
-
-      connection.query('INSERT INTO RentalContracts (cust_id, vehicle_id, meter_out, meter_in, cost_per_mile, reg_date) VALUES (?, ?, ?, ?, ?, NOW())',
-        [custId, vehicleId, meterOut, meterIn, costPerMile],
+      var cost_per_day = req.body.cost_per_day;
+      var pick_up = req.body.pick_up;
+      var drop_off = req.body.drop_off;
+      
+      connection.query('INSERT INTO RentalContracts (cust_id, vehicle_id, meter_out, meter_in, cost_per_day, pick_up, drop_off) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        [custId, vehicleId, meterOut, meterIn, cost_per_day, pick_up, drop_off],
         function(err,rows) {
           if (err) throw err;
           connection.release();

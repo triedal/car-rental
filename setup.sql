@@ -27,7 +27,8 @@ CREATE TABLE RentalContracts (
   meter_out INT(6) UNSIGNED,
   meter_in INT(6) UNSIGNED,
   cost_per_day INT,
-  reg_date DATETIME NOT NULL
+  pick_up DATETIME,
+  drop_off DATETIME
 );
 
 INSERT INTO Vehicles (type, year, make, model, vin_num, odometer, cost_per_day) VALUES

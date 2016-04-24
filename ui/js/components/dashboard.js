@@ -1,8 +1,23 @@
 var React = require('react');
 var _ = require('lodash');
 var Vehicle = require('../models/vehicle');
+var $ = require('jquery');
 
 var Dashboard = React.createClass({
+  deleteRow: function(e) {
+    _this = this;
+    var $row = $(e.target).parents()[2];
+    var id = $($row).children(0).html();
+    var tableName = $($row).closest('.row-fluid').find('h3').html();
+
+    var victim = tableName === 'Vehicles' ? window.app.vehicles.get(id) : tableName === 'Customers' ? window.app.customers.get(id) : window.app.contracts.get(id);
+
+    victim.destroy({
+      success: function() {
+        _this.forceUpdate();
+      }
+    });
+  },
   contractRows: function() {
     var _this = this;
     var rows = [];
@@ -17,6 +32,7 @@ var Dashboard = React.createClass({
           <td>${contract.attributes.cost_per_day}</td>
           <td>{contract.attributes.pick_up}</td>
           <td>{contract.attributes.drop_off}</td>
+          <td><a onClick={_this.deleteRow} className="btn btn-circle-micro"><span className="glyphicon glyphicon-remove"></span> </a></td>
         </tr>
       );
     });
@@ -31,6 +47,7 @@ var Dashboard = React.createClass({
           <td>{customer.id}</td>
           <td>{customer.attributes.firstname}</td>
           <td>{customer.attributes.lastname}</td>
+          <td><a onClick={_this.deleteRow} className="btn btn-circle-micro"><span className="glyphicon glyphicon-remove"></span> </a></td>
         </tr>
       );
     });
@@ -51,6 +68,7 @@ var Dashboard = React.createClass({
           <td>{vehicle.attributes.vin_num}</td>
           <td>{vehicle.attributes.type}</td>
           <td>${vehicle.attributes.cost_per_day}</td>
+          <td><a onClick={_this.deleteRow} className="btn btn-circle-micro"><span className="glyphicon glyphicon-remove"></span> </a></td>
         </tr>
       );
     });

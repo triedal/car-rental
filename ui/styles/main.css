@@ -1,4 +1,25 @@
 /*
+------------ BOOTSTRAP OVERRIDE -----------------
+*/
+.btn {
+  color: grey;
+}
+
+.btn-circle-micro {
+  width: 19px;
+  height: 19px;
+  text-align: center;
+  padding: 1px 0;
+  font-size: 13px;
+  line-height: 0.1;
+  border-radius: 30px;
+}
+
+.table tr td:last-child {
+  text-align: right;
+}
+
+/*
 ------------ GLOBAL -----------------
 */
 

@@ -21,6 +21,7 @@
     "express-subdomain": "^1.0.5",
     "jquery": "^2.2.2",
     "lodash": "^4.11.1",
+    "moment": "^2.13.0",
     "mysql": "^2.10.2",
     "path": "^0.12.7",
     "react": "^0.14.8",

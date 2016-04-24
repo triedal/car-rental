@@ -2,6 +2,7 @@ var React = require('react');
 var _ = require('lodash');
 var Vehicle = require('../models/vehicle');
 var $ = require('jquery');
+var moment = require('moment');
 
 var Dashboard = React.createClass({
   deleteRow: function(e) {
@@ -30,8 +31,10 @@ var Dashboard = React.createClass({
           <td>{contract.attributes.meter_out} mi.</td>
           <td>{contract.attributes.meter_in} mi.</td>
           <td>${contract.attributes.cost_per_day}</td>
-          <td>{contract.attributes.pick_up}</td>
-          <td>{contract.attributes.drop_off}</td>
+          <td>{moment(contract.attributes.pick_up).format('M/D/YYYY')}</td>
+          <td>{moment(contract.attributes.pick_up).format('h:mm A')}</td>
+          <td>{moment(contract.attributes.drop_off).format('M/D/YYYY')}</td>
+          <td>{moment(contract.attributes.drop_off).format('h:mm A')}</td>
           <td><a onClick={_this.deleteRow} className="btn btn-circle-micro"><span className="glyphicon glyphicon-remove"></span> </a></td>
         </tr>
       );
@@ -215,8 +218,10 @@ var Dashboard = React.createClass({
                     <th>Odometer Out</th>
                     <th>Odometer In</th>
                     <th>Cost</th>
-                    <th>Pick Up</th>
-                    <th>Drop Off</th>
+                    <th>Pick Up Day</th>
+                    <th>Pick Up Time</th>
+                    <th>Drop Off Day</th>
+                    <th>Drop Off Time</th>
                   </tr>
                 </thead>
                 <tbody>

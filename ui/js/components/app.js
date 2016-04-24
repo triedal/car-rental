@@ -49,7 +49,7 @@ var App = React.createClass({
       return (
         <div>
           { this.props.route.name !== 'dashboard' ? <Navbar /> : null }
-          <Handler route={this.props.route} vehicles={this.state.vehicles} />
+          <Handler route={this.props.route} vehicles={this.state.vehicles} customers={this.state.customers} contracts={this.state.contracts} />
         </div> 
       );
   }

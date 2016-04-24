@@ -3,6 +3,39 @@ var _ = require('lodash');
 var Vehicle = require('../models/vehicle');
 
 var Dashboard = React.createClass({
+  contractRows: function() {
+    var _this = this;
+    var rows = [];
+    _(this.props.contracts.models).forEach(function(contract, index) {
+      rows.push(
+        <tr key={index}>
+          <td>{contract.id}</td>
+          <td>{contract.attributes.cust_id}</td>
+          <td>{contract.attributes.vehicle_id}</td>
+          <td>{contract.attributes.meter_out} mi.</td>
+          <td>{contract.attributes.meter_in} mi.</td>
+          <td>${contract.attributes.cost_per_day}</td>
+          <td>{contract.attributes.pick_up}</td>
+          <td>{contract.attributes.drop_off}</td>
+        </tr>
+      );
+    });
+    return rows;
+  },
+  customerRows: function() {
+    var _this = this;
+    var rows = [];
+    _(this.props.customers.models).forEach(function(customer, index) {
+      rows.push(
+        <tr key={index}>
+          <td>{customer.id}</td>
+          <td>{customer.attributes.firstname}</td>
+          <td>{customer.attributes.lastname}</td>
+        </tr>
+      );
+    });
+    return rows;
+  },
   vehicleRows: function() {
     var _this = this;
     var rows = [];
@@ -86,6 +119,8 @@ var Dashboard = React.createClass({
   },
 	render: function() {
     var vehicleRows = this.vehicleRows();
+    var customerRows = this.customerRows();
+    var contractRows = this.contractRows();
 		return (
       <div id="dashboard">
         <div className="container-fluid max-width">
@@ -132,6 +167,45 @@ var Dashboard = React.createClass({
                 
                 <button type="button" onClick={this.submitForm}>Add Vehicle</button> 
             </form>
+          </div>
+          <div className="row-fluid">
+            <h3>Customers</h3>
+            <div className="table-responsive">
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {customerRows}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="row-fluid">
+            <h3>Rental Contracts</h3>
+            <div className="table-responsive">
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Cust #</th>
+                    <th>Vehicle #</th>
+                    <th>Odometer Out</th>
+                    <th>Odometer In</th>
+                    <th>Cost</th>
+                    <th>Pick Up</th>
+                    <th>Drop Off</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {contractRows}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

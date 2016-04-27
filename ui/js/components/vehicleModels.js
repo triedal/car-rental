@@ -61,10 +61,12 @@ var VehicleModels = React.createClass({
                   {vehicles}
                 </ul>
               </div>
+              {/*
               <div className="vehicle-nav-control">
                 <a className="vehicle-nav-scroll" data-direction="up" href="#"><i className="fa fa-chevron-up"></i></a>
                 <a className="vehicle-nav-scroll" data-direction="down" href="#"><i className="fa fa-chevron-down"></i></a>
               </div>
+              */}
             </div>
             <div className="vehicle-data">
               <div className="col-md-6">

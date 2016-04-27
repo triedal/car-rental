@@ -462,6 +462,7 @@ body {
   margin-top: 90px;
   position: relative;
   z-index: 2;
+  margin-bottom: 50px;
 }
 #contact h2 {
   font-size: 36px;

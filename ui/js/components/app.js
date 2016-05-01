@@ -14,6 +14,7 @@ var App = React.createClass({
     var _this = this;
     window.app = window.app || {};
     window.app.router = Router;
+    
     window.app.vehicles = new Vehicles();
     window.app.vehicles.fetch({
       success: function(vehicles) {
